@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TextHelper {
@@ -12,27 +13,13 @@ public class TextHelper {
     private FileConfiguration config = plugin.getConfig();
 
     public String getColor(String text){
-        return ChatColor.translateAlternateColorCodes('&', text.replaceAll("%prefix%", config.getString("prefix")));
+        return ChatColor.translateAlternateColorCodes('&', text.replaceAll("%prefix%", checkString(config.getString("prefix"), config.getDefaults().getString("prefix"))));
     }
 
-    public List<String> getColorList(List<String> texts){
+    public List<String> getColorList(List<String> strings){
         List<String> messages = new ArrayList<>();
-        for(String text:texts){
-            messages.add(getColor(text));
-        }
-        return messages;
-    }
-
-    public String[] getColorList(String[] texts){
-        String[] messages = new String[]{};
-        int length = texts.length/2;
-        if(texts.length == 0){
-            messages[0] = getColor(texts[0]);
-        }else {
-            for (int i = 0, c = texts.length; i < length && c >= length; i++, c--) {
-                messages[i] = getColor(texts[i]);
-                messages[c] = getColor(texts[c]);
-            }
+        for(int i = 0, size = strings.size(); i < size; i++){
+            messages.add(i, getColor(strings.get(i)));
         }
         return messages;
     }
@@ -41,8 +28,24 @@ public class TextHelper {
         plugin.getServer().getConsoleSender().sendMessage(getColor(text));
     }
 
-    public void sendConsoleColor(String[] texts){
-        plugin.getServer().getConsoleSender().sendMessage(getColorList(texts));
+    public void sendConsoleColorList(List<String> strings){
+        plugin.getServer().getConsoleSender().sendMessage(getColorList(strings).toArray(new String[]{}));
+    }
+
+    public String checkString(String text, String defText){
+        if(text == null){
+            return getColor(defText);
+        }else{
+            return getColor(text);
+        }
+    }
+
+    public List<String> checkStringList(List<String> strings, List<String> defStrings){
+        if(strings.isEmpty()){
+            return getColorList(strings);
+        }else{
+            return getColorList(defStrings);
+        }
     }
 
 }

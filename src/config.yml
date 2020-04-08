@@ -1,0 +1,34 @@
+# ====================== #
+#    Fragmented Staff    #
+#      By: joshy23       #
+# ====================== #
+prefix: "&7[&8Fragmented&eStaff&7]&r"
+messages:
+  staff-mode:
+    successfully-enabled:
+      - "%prefix% &aSuccessfully enabled staff mode"
+      - "%prefix% &eInventory and other data saved"
+    successfully-disabled:
+      - "%prefix% &eRestoring inventory and other data"
+      - "%prefix% &aSuccessfully disabled staff mode"
+#    successfully-enabled-other:
+#      - "%prefix% &aSuccessfully enabled staff mode to %player%"
+#      - "%prefix% &eInventory and other data of %player% saved"
+#    successfully-disabled-other:
+#      - "%prefix% &eRestoring inventory and other data of %player%"
+#      - "%prefix% &aSuccessfully disabled staff mode to %player%"
+    error-switching:
+      - "%prefix% &can unexpected error occurred trying to change mode"
+    error-player-no-permission:
+      - "%prefix% &cYou don't have permission"
+    error-player-no-permission-switch-other:
+      - "%prefix% &cYou don't have permission"
+    console-error-null-player:
+      - "%prefix% &cYou must enter a player name"
+    console-error-player-not-found:
+      - "%prefix% &cPlayer not found!"
+    console-error-player-no-permission:
+      - "%prefix% &cThis player don't have permission!"
+      - "%prefix% &cPermission: &efragmentedstaff.staffmode.use"
+
+

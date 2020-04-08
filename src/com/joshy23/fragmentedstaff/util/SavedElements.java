@@ -1,10 +1,14 @@
 package com.joshy23.fragmentedstaff.util;
 
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 public class SavedElements {
     private ItemStack[] savedEquipment;
@@ -89,6 +93,19 @@ public class SavedElements {
 
     public void setSavedFlyState(boolean savedFlyState) {
         this.savedFlyState = savedFlyState;
+    }
+
+    public void restoreElements(Player p){
+        PlayerInventory playerInventory = p.getInventory();
+        p.setGameMode(savedGameMode);
+        p.setFoodLevel(savedHunger);
+        p.setMaxHealth(savedTotalLife);
+        p.setHealth(savedLife);
+        playerInventory.setArmorContents(savedEquipment);
+        playerInventory.setContents(savedInventory);
+        p.addPotionEffects(savedPotionEffects);
+        p.setAllowFlight(savedFlyState);
+        p.setFlying(savedFlyState);
     }
 
 }

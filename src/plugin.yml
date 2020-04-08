@@ -1,3 +1,7 @@
 name: FragmentedStaff
 main: com.joshy23.fragmentedstaff.FragmentedStaff
+author: joshy23
 version: 0.0.1
+commands:
+  fs:
+    description: Principal command of FragmentedStaff.

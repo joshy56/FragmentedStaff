@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandBase implements TabExecutor {
@@ -42,6 +43,8 @@ public class CommandBase implements TabExecutor {
     }
 
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        return null;
+        List<String> list = new ArrayList<>();
+        list.addAll(toggleModeCommand.onTabComplete(sender, command, label, args));
+        return list;
     }
 }

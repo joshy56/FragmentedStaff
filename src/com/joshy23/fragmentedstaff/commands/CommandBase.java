@@ -16,6 +16,9 @@ public class CommandBase implements TabExecutor {
     private FragmentedStaff plugin = FragmentedStaff.getPlugin();
     private TextHelper textHelper = new TextHelper();
     private ToggleModeCommand toggleModeCommand = new ToggleModeCommand();
+    private VanishCommand vanishCommand = new VanishCommand();
+    private FreezeCommand freezeCommand = new FreezeCommand();
+    private VisualizeInventoryCommand visualizeInventoryCommand = new VisualizeInventoryCommand();
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(args.length == 0){
@@ -38,6 +41,9 @@ public class CommandBase implements TabExecutor {
             sender.sendMessage(textHelper.getColor("&e&m-----[&r%prefix%&e&m]-----"));
         }else{
             toggleModeCommand.onCommand(sender, command, label, args);
+            vanishCommand.onCommand(sender, command, label, args);
+            freezeCommand.onCommand(sender, command, label, args);
+            visualizeInventoryCommand.onCommand(sender, command, label, args);
         }
         return true;
     }
@@ -45,6 +51,9 @@ public class CommandBase implements TabExecutor {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         List<String> list = new ArrayList<>();
         list.addAll(toggleModeCommand.onTabComplete(sender, command, label, args));
+        list.addAll(vanishCommand.onTabComplete(sender, command, label, args));
+        list.addAll(freezeCommand.onTabComplete(sender, command, label, args));
+        list.addAll(visualizeInventoryCommand.onTabComplete(sender, command, label, args));
         return list;
     }
 }
